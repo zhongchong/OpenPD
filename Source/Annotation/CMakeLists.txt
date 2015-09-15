@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------
-#   Destription: Annotation CMake file
+#   Destription: Annotation Project CMake file
 #   Author: Zhong Chong
 #   Date: 2015-9-14
 # -----------------------------------------------------------------------
