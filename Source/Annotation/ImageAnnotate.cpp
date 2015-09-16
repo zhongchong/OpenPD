@@ -8,7 +8,7 @@
 Mat ImageAnnotate::src;
 Mat ImageAnnotate::dst;
 Mat ImageAnnotate::tmp;
-string ImageAnnotate::filePath = "D:/Project/Component/PedestrianDetection/PETS2015/ARENA/A1_ARENA-Tg_ENV_RGB_3/";
+string ImageAnnotate::filePath = "../../PETS2015/ARENA/A1_ARENA-Tg_ENV_RGB_3/";
 int ImageAnnotate::count=1;
 int ImageAnnotate::num=295;
 string ImageAnnotate::title = "Annotate";
@@ -16,7 +16,7 @@ vector<Rect> ImageAnnotate::body;
 
 ImageAnnotate::ImageAnnotate(void)
 {
-	
+
 }
 
 string ImageAnnotate::getFileName(string filePath,int count)
@@ -44,15 +44,15 @@ int ImageAnnotate::nextFrame()
 
 void ImageAnnotate::on_mouse(int event,int x,int y,int flags,void *ustc)
 {
-	static Point pre = Point(-1,-1);//初始坐标
-	static Point cur = pre;//实时坐标
+	static Point pre = Point(-1,-1);
+	static Point cur = pre;
 
-	if (event == CV_EVENT_LBUTTONDOWN)//左键按下，读取初始坐标
+	if (event == CV_EVENT_LBUTTONDOWN)
 	{
 		pre = Point(x,y);
 		cur = pre;
 	}
-	else if (event == CV_EVENT_MOUSEMOVE && !flags)//鼠标没有按键的情况下鼠标移动的处理函数
+	else if (event == CV_EVENT_MOUSEMOVE && !flags)
 	{
 		tmp = dst.clone();
 /*		sprintf_s(temp,"image%d(%d,%d)",count,x,y);*/
@@ -60,7 +60,7 @@ void ImageAnnotate::on_mouse(int event,int x,int y,int flags,void *ustc)
 /*		putText(tmp,temp,Point(660,40),FONT_HERSHEY_SIMPLEX,0.5,Scalar(255,255,255));*/
 		imshow(title,tmp);
 	}
-	else if (event == CV_EVENT_MOUSEMOVE && (flags & CV_EVENT_FLAG_LBUTTON))//左键按下时，鼠标移动，则在图像上划矩形
+	else if (event == CV_EVENT_MOUSEMOVE && (flags & CV_EVENT_FLAG_LBUTTON))
 	{
 		tmp = dst.clone();
 /*		sprintf_s(temp,"image%d(%d,%d)",count,x,y);*/
@@ -69,7 +69,7 @@ void ImageAnnotate::on_mouse(int event,int x,int y,int flags,void *ustc)
 		rectangle(tmp,pre,cur,Scalar(255,0,0),1,8,0);
 		imshow(title,tmp);
 	}
-	else if (event == CV_EVENT_LBUTTONUP)//左键松开，将在图像上划矩形
+	else if (event == CV_EVENT_LBUTTONUP)
 	{
 		cur = Point(x,y);
 		if(cur != pre)
@@ -83,7 +83,7 @@ void ImageAnnotate::on_mouse(int event,int x,int y,int flags,void *ustc)
 			imshow(title,tmp);
 		}
 	}
-	else if(event == CV_EVENT_RBUTTONDOWN)//右键按下还原图片
+	else if(event == CV_EVENT_RBUTTONDOWN)
 	{
 		dst = src.clone();
 		body.clear();
@@ -97,7 +97,7 @@ void ImageAnnotate::save()
 	fstream file;
 	char ch[200];
 	sprintf(ch,"%05d.txt",count);
-	file.open(filePath+ch,ios::out);
+	file.open(filePath+string(ch),ios::out);
 	if( !file.is_open() )
 		cerr<<"feature point file failed to write"<<endl;
 	for(size_t i = 0; i < body.size(); ++i)
@@ -143,21 +143,21 @@ void ImageAnnotate::load()
 	}
 	while(!file.eof())
 	{
-		string str;//特征点信息x,y-width,heigth
+		string str;
 		file>>str;
-		if( !str.empty() )//如果信息为空
+		if( !str.empty() )
 		{
 			Rect rect;
 			vector<string> size;
 			vector<string> pt;
 			split(str,"-",size);
 			string subStr;
-			//分割锚点
+
 			subStr = size.at(0);
 			split(subStr,",",pt);
 			rect.x = atoi( pt.at(0).c_str() );
 			rect.y = atoi( pt.at(1).c_str() );
-			//分割Size
+
 			subStr = size.at(1);
 			pt.clear();
 			split(subStr,",",pt);

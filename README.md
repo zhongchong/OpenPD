@@ -1,5 +1,6 @@
 # OpenPD
-A Module to Detect Pedestrian in Video Surveillance 
+
+A Module to Detect Pedestrian in Video Surveillance
 
 Author: Zhong Chong
 

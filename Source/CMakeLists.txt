@@ -5,4 +5,4 @@
 # -----------------------------------------------------------------------
 
 ADD_SUBDIRECTORY(Hello)
-
+ADD_SUBDIRECTORY(Annotation)
