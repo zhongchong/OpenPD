@@ -3,9 +3,10 @@
 #include <opencv2/core/core.hpp>
 #include <string>
 #include <vector>
+#include "Frame.h"
 
-using namespace cv;
 using namespace std;
+using namespace cv;
 
 class ImageAnnotate
 {
@@ -16,20 +17,14 @@ private:
 public:
 	static void annotate();
 	static void on_mouse(int event,int x,int y,int flags,void *ustc);
-	static string getFileName(string filePath,int count);
 	static int nextFrame();
-	static void save();
-	static void load();
 	static void draw();
-	static void split(const string& src, const string& separator, vector<string>& dest);
 
-	static Mat src;
-	static Mat dst;
-	static Mat tmp;
-	static string filePath;
-	static string title;
-	static int count;
-	static int num;
-	static vector<Rect> body; 
+	static Mat image_display;  //display image
+	static Mat image_tmp;	//temp display image
+	static Frame frame;		//current frame
+	static string filePath;	//image file path
+	static string title;	//window title
+	static int total_num;	//totle image numbers
+	static int current_num;		//current image number
 };
-

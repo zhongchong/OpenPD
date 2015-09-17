@@ -4,5 +4,4 @@
 #   Date: 2015-9-15
 # -----------------------------------------------------------------------
 
-ADD_SUBDIRECTORY(Hello)
 ADD_SUBDIRECTORY(Annotation)
