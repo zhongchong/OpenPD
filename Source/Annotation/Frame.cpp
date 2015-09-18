@@ -79,6 +79,12 @@ void Frame::load()
     file.open(filePath+bodyFileName,ios::in);
     if( !file.is_open() )
     {
+        file.open(filePath+bodyFileName, ios::out);
+        file.close();
+        file.open(filePath+bodyFileName, ios::in);
+    }
+    if( !file.is_open() )
+    {
         cerr<<"human body point file failed to read"<<endl;
     }
     while(!file.eof())

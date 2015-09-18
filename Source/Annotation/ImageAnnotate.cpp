@@ -8,9 +8,9 @@
 
 Mat ImageAnnotate::image_display;
 Mat ImageAnnotate::image_tmp;
-string ImageAnnotate::filePath = "../../PETS2015/ARENA/A1_ARENA-Tg_ENV_RGB_3/";
+string ImageAnnotate::filePath = "../../PETS2015/ARENA/Data1/Normal/";
 int ImageAnnotate::current_num=1;
-int ImageAnnotate::total_num=295;
+int ImageAnnotate::total_num=289;
 string ImageAnnotate::title = "Annotate";
 Frame ImageAnnotate::frame;
 
