@@ -13,4 +13,4 @@ SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 TARGET_LINK_LIBRARIES(Annotation libopencv_core.so libopencv_highgui.so
-    libopencv_imgproc.so libopencv_imgcodecs.so)
+    libopencv_imgproc.so)
